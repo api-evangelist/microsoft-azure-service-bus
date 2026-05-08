@@ -33,6 +33,8 @@ apis:
       - Subscriptions
       - Topics
     properties:
+      - url: openapi/microsoft-azure-service-bus-openapi.yml
+        type: OpenAPI
       - type: Documentation
         url: https://learn.microsoft.com/en-us/rest/api/servicebus/
       - type: Authentication
