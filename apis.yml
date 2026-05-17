@@ -66,21 +66,21 @@ common:
     url: https://azure.microsoft.com/en-us/pricing/details/service-bus/
   - type: Documentation
     url: https://learn.microsoft.com/en-us/azure/service-bus-messaging/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-portal
   - type: SDKs
     url: https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues
-  - type: Status
+  - type: StatusPage
     url: https://azure.status.microsoft/en-us/status
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.microsoft.com/en-us/legal/terms-of-use
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://privacy.microsoft.com/en-us/privacystatement
   - type: Support
     url: https://support.microsoft.com/
   - type: Blog
     url: https://azure.microsoft.com/en-us/blog/product/service-bus/
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/azureservicebus
 maintainers:
   - FN: Kin Lane
