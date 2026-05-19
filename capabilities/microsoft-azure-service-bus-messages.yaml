@@ -1,0 +1,196 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Service Bus REST API — Messages
+  description: 'Azure Service Bus REST API — Messages. 5 operations. Lead operation: Service Bus Send message. Self-contained
+    Naftiko capability covering one Microsoft Azure Service Bus business surface.'
+  tags:
+  - Microsoft Azure Service Bus
+  - Messages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_SERVICE_BUS_API_KEY: MICROSOFT_AZURE_SERVICE_BUS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: microsoft-azure-service-bus-messages
+    baseUri: https://{namespace}.servicebus.windows.net
+    description: Azure Service Bus REST API — Messages business capability. Self-contained, no shared references.
+    resources:
+    - name: queuePath-messages
+      path: /{queuePath}/messages
+      operations:
+      - name: sendmessage
+        method: POST
+        description: Service Bus Send message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: queuePath-messages-head
+      path: /{queuePath}/messages/head
+      operations:
+      - name: receiveanddelete
+        method: POST
+        description: Service Bus Receive and delete
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: peeklockmessage
+        method: DELETE
+        description: Service Bus Peek-lock message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: queuePath-messages-messageId-lockToken
+      path: /{queuePath}/messages/{messageId}/{lockToken}
+      operations:
+      - name: completemessage
+        method: DELETE
+        description: Service Bus Complete message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: renewlock
+        method: PUT
+        description: Service Bus Renew lock
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.MICROSOFT_AZURE_SERVICE_BUS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: microsoft-azure-service-bus-messages-rest
+    port: 8080
+    description: REST adapter for Azure Service Bus REST API — Messages. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{queuepath}/messages
+      name: queuepath-messages
+      description: REST surface for queuePath-messages.
+      operations:
+      - method: POST
+        name: sendmessage
+        description: Service Bus Send message
+        call: microsoft-azure-service-bus-messages.sendmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{queuepath}/messages/head
+      name: queuepath-messages-head
+      description: REST surface for queuePath-messages-head.
+      operations:
+      - method: POST
+        name: receiveanddelete
+        description: Service Bus Receive and delete
+        call: microsoft-azure-service-bus-messages.receiveanddelete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: peeklockmessage
+        description: Service Bus Peek-lock message
+        call: microsoft-azure-service-bus-messages.peeklockmessage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{queuepath}/messages/{messageid}/{locktoken}
+      name: queuepath-messages-messageid-locktoken
+      description: REST surface for queuePath-messages-messageId-lockToken.
+      operations:
+      - method: DELETE
+        name: completemessage
+        description: Service Bus Complete message
+        call: microsoft-azure-service-bus-messages.completemessage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: renewlock
+        description: Service Bus Renew lock
+        call: microsoft-azure-service-bus-messages.renewlock
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: microsoft-azure-service-bus-messages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Service Bus REST API — Messages. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: service-bus-send-message
+      description: Service Bus Send message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: microsoft-azure-service-bus-messages.sendmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: service-bus-receive-and-delete
+      description: Service Bus Receive and delete
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: microsoft-azure-service-bus-messages.receiveanddelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: service-bus-peek-lock-message
+      description: Service Bus Peek-lock message
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: microsoft-azure-service-bus-messages.peeklockmessage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: service-bus-complete-message
+      description: Service Bus Complete message
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: microsoft-azure-service-bus-messages.completemessage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: service-bus-renew-lock
+      description: Service Bus Renew lock
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-service-bus-messages.renewlock
+      outputParameters:
+      - type: object
+        mapping: $.
