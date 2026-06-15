@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Service Bus REST API",
+    "version": "2017-04"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Service Bus Send message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{namespace}.servicebus.windows.net/:queuePath/messages",
+            "params": [
+              {
+                "name": "queuePath",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a message to a queue or topic."
+        },
+        {
+          "info": {
+            "name": "Service Bus Receive and delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{namespace}.servicebus.windows.net/:queuePath/messages/head",
+            "params": [
+              {
+                "name": "queuePath",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Receives the next message from a queue and deletes it."
+        },
+        {
+          "info": {
+            "name": "Service Bus Peek-lock message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{namespace}.servicebus.windows.net/:queuePath/messages/head",
+            "params": [
+              {
+                "name": "queuePath",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Peeks the next message and locks it for processing."
+        },
+        {
+          "info": {
+            "name": "Service Bus Renew lock",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{namespace}.servicebus.windows.net/:queuePath/messages/:messageId/:lockToken",
+            "params": [
+              {
+                "name": "queuePath",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lockToken",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Renews the lock on a message."
+        },
+        {
+          "info": {
+            "name": "Service Bus Complete message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{namespace}.servicebus.windows.net/:queuePath/messages/:messageId/:lockToken",
+            "params": [
+              {
+                "name": "queuePath",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lockToken",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Completes a peek-locked message."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
