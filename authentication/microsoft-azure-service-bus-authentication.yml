@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/microsoft-azure-service-bus-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: sasToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: SAS token in Authorization header
+  sources:
+  - openapi/microsoft-azure-service-bus-openapi.yml

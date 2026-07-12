@@ -57,6 +57,10 @@ apis:
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/active-directory/develop/authentication-flows-app-scenarios
 common:
+  - type: DomainSecurity
+    url: security/microsoft-azure-service-bus-domain-security.yml
+  - type: Authentication
+    url: authentication/microsoft-azure-service-bus-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/Azure
   - type: Portal
