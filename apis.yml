@@ -57,6 +57,8 @@ apis:
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/active-directory/develop/authentication-flows-app-scenarios
 common:
+  - type: AgenticAccess
+    url: agentic-access/microsoft-azure-service-bus-agentic-access.yml
   - type: DomainSecurity
     url: security/microsoft-azure-service-bus-domain-security.yml
   - type: Authentication
