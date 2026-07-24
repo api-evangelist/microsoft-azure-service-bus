@@ -1,24 +1,17 @@
 openapi: 3.1.0
 info:
-  title: Azure Service Bus REST API
-  description: 'Azure Service Bus REST API supports messaging operations: sending, receiving, peeking,
-    completing, abandoning, and renewing locks on messages from queues, topics, and subscriptions.'
+  title: Azure Service Bus REST Messages API
+  description: 'Azure Service Bus REST API supports messaging operations: sending, receiving, peeking, completing, abandoning, and renewing locks on messages from queues, topics, and subscriptions.'
   version: 2017-04
-externalDocs:
-  description: Azure Service Bus REST API Documentation
-  url: https://learn.microsoft.com/en-us/rest/api/servicebus/
 servers:
 - url: https://{namespace}.servicebus.windows.net
   variables:
     namespace:
       default: mynamespace
-tags:
-- name: Queues
-- name: Topics
-- name: Subscriptions
-- name: Messages
 security:
 - sasToken: []
+tags:
+- name: Messages
 paths:
   /{queuePath}/messages:
     parameters:
@@ -122,5 +115,8 @@ components:
       in: header
       name: Authorization
       description: SAS token in Authorization header
+externalDocs:
+  description: Azure Service Bus REST API Documentation
+  url: https://learn.microsoft.com/en-us/rest/api/servicebus/
 x-generated-from: https://learn.microsoft.com/en-us/rest/api/servicebus/
 x-generated-by: claude-crawl-2026-05-08
