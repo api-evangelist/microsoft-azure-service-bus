@@ -5,7 +5,20 @@ description: >-
   Azure Service Bus is a fully managed enterprise message broker with message queues and publish-subscribe topics. It
   enables decoupling applications and services with reliable asynchronous messaging, supporting sessions,
   dead-lettering, scheduled delivery, duplicate detection, and transactions.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/microsoft-azure-service-bus.png
 tags:
   - Enterprise Messaging
   - Message Broker
@@ -17,45 +30,40 @@ created: '2026-03-13'
 modified: '2026-05-19'
 specificationVersion: '0.20'
 apis:
-  - aid: microsoft-azure-service-bus:rest-api
-    name: Azure Service Bus REST API
-    description: >-
-      Azure Service Bus REST API provides operations for sending and receiving messages through queues and topics with
-      support for sessions, dead-lettering, scheduled delivery, duplicate detection, and transactions.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://learn.microsoft.com/en-us/rest/api/servicebus/
-    baseURL: https://{namespace}.servicebus.windows.net/
-    tags:
-      - Messaging
-      - Queues
-      - Subscriptions
-      - Topics
-    properties:
-      - url: openapi/microsoft-azure-service-bus-openapi.yml
-        type: OpenAPI
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/rest/api/servicebus/
-      - type: Authentication
-        url: https://learn.microsoft.com/en-us/rest/api/eventhub/authenticate-shared-access-signature
-      - type: Reference
-        url: https://learn.microsoft.com/en-us/rest/api/servicebus/resourceprovider
-  - aid: microsoft-azure-service-bus:management-api
-    name: Azure Service Bus Management REST API
-    description: >-
-      The management REST API enables namespace, queue, topic, and subscription configuration through Azure Resource
-      Manager, including SKU, network rules, authorization rules, and disaster recovery configuration.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://learn.microsoft.com/en-us/rest/api/servicebus/controlplane-stable/
-    baseURL: https://management.azure.com/
-    tags:
-      - Management
-      - Namespaces
-      - Provisioning
-    properties:
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/rest/api/servicebus/controlplane-stable/
-      - type: Authentication
-        url: https://learn.microsoft.com/en-us/azure/active-directory/develop/authentication-flows-app-scenarios
+- aid: microsoft-azure-service-bus:management-api
+  name: Azure Service Bus Management REST API
+  description: >-
+    The management REST API enables namespace, queue, topic, and subscription configuration through Azure
+    Resource Manager, including SKU, network rules, authorization rules, and disaster recovery configuration.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://learn.microsoft.com/en-us/rest/api/servicebus/controlplane-stable/
+  baseURL: https://management.azure.com/
+  tags:
+  - Management
+  - Namespaces
+  - Provisioning
+  properties:
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/servicebus/controlplane-stable/
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/azure/active-directory/develop/authentication-flows-app-scenarios
+- aid: microsoft-azure-service-bus:microsoft-azure-service-bus-messages-api
+  name: Azure Service Bus Messages API
+  description: The Messages API from Azure Service Bus — 3 operation(s) for messages.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/servicebus/
+  baseURL: https://{namespace}.servicebus.windows.net/
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-service-bus-messages-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/servicebus/
+  - type: Authentication
+    url: https://learn.microsoft.com/en-us/rest/api/eventhub/authenticate-shared-access-signature
+  - type: Reference
+    url: https://learn.microsoft.com/en-us/rest/api/servicebus/resourceprovider
 common:
   - type: AgenticAccess
     url: agentic-access/microsoft-azure-service-bus-agentic-access.yml
