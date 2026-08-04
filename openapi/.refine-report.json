@@ -1,0 +1,14 @@
+{
+  "provider": "microsoft-azure-service-bus",
+  "sources": [
+    "microsoft-azure-service-bus-messages-api-openapi.yml"
+  ],
+  "outputs": [
+    "microsoft-azure-service-bus-messages-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
