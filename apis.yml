@@ -54,6 +54,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/servicebus/
   baseURL: https://{namespace}.servicebus.windows.net/
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
