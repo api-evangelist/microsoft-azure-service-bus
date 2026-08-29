@@ -5,6 +5,18 @@ description: >-
   Azure Service Bus is a fully managed enterprise message broker with message queues and publish-subscribe topics. It
   enables decoupling applications and services with reliable asynchronous messaging, supporting sessions,
   dead-lettering, scheduled delivery, duplicate detection, and transactions.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
